@@ -1,6 +1,5 @@
 import React, {
     Component,
-    PropTypes,
 } from 'react';
 
 import Display from './Display';
@@ -24,13 +23,11 @@ class Calculator extends Component {
 
     // sets the state of output
     setOutput = (output) => {
-        console.log(output);
         this.setState({
             output: `${this.state.firstInput} ${this.state.secondInput} ${this.state.thirdInput}`,
             firstInput: `${output}`,
             thirdInput: '',
         });
-        console.log(this.state.firstInput);
     };
 
     // tells what value to pass to this.setOutput
@@ -139,11 +136,9 @@ class Calculator extends Component {
                 secondInput: this.state.secondInput.slice(0, -1),
             });
         } else if (this.state.firstInput !== '' && this.state.secondInput === '' && this.state.thirdInput === '') {
-            console.log(this.state.firstInput);
             this.setState({
                 firstInput: this.state.firstInput.slice(0, -1),
             });
-            console.log(this.state.firstInput);
         }
     };
 
