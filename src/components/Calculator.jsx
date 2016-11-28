@@ -31,7 +31,7 @@ class Calculator extends Component {
          * Checks to see if firstInput has '.'
          * if not resets firstInputDecimal to false
          */
-        if (this.state.firstInput.lastIndexOf('.') === -1) {
+        if (this.state.firstInput.lastIndexOf('.') === -1 || this.state.firstInput == '0.0') {
             this.setState({
                 firstInputDecimal: false,
             });
@@ -201,7 +201,7 @@ class Calculator extends Component {
     render() {
         return (
             <div className="container">
-                <Display{...this.state} />
+                <Display {...this.state} />
                 <Buttons {...this.state} handleInputChange={this.handleInputChange} />
             </div>
         );
