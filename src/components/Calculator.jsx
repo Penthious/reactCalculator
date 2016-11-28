@@ -5,7 +5,9 @@ import React, {
 import Display from './Display';
 import Buttons from './Buttons';
 
-// css
+/**
+ * Css
+ */
 import '../styles/calculator.sass';
 
 class Calculator extends Component {
@@ -21,13 +23,29 @@ class Calculator extends Component {
         };
     }
 
-    // sets the state of output
+    /**
+     * sets the state of output
+     */
     setOutput = (output) => {
+        /**
+         * Checks to see if firstInput has '.'
+         * if not resets firstInputDecimal to false
+         */
         if (this.state.firstInput.lastIndexOf('.') === -1) {
             this.setState({
                 firstInputDecimal: false,
             });
         }
+
+        /**
+         * Sets output to the string literal of
+         * firstInput secondInput thirdInput IE: 4 * 10
+         *
+         * Sets firstInput to the total value of
+         * firstInput(4) secondInput(+) thirdInput(10) = output(14)
+         *
+         * Sets thirdInput and thirdInputDecimal back to default
+         */
         this.setState({
             output: `${this.state.firstInput} ${this.state.secondInput} ${this.state.thirdInput}`,
             firstInput: `${output}`,
@@ -36,9 +54,11 @@ class Calculator extends Component {
         });
     };
 
-    // tells what value to pass to this.setOutput
+    /**
+     * Tells what value to pass to this.setOutput
+     */
     handleOutput = () => {
-        const firstNumber  = Number(this.state.firstInput);
+        const firstNumber = Number(this.state.firstInput);
         const secondNumber = Number(this.state.thirdInput);
         switch (this.state.secondInput) {
             case '+':
@@ -57,14 +77,16 @@ class Calculator extends Component {
                 this.setOutput(firstNumber % secondNumber);
                 break;
             case '^':
-                this.setOutput(firstNumber ** secondNumber);
+                this.setOutput(firstNumber**secondNumber);
                 break;
             default:
                 break;
         }
     };
 
-    // handles how value affects the current state
+    /**
+     * Handles how value affects the current state
+     */
     handleInputChange = (value) => {
         if (value === '+' || value === '-' || value === '/' || value === '*' || value === '%' || value === '^') {
             if (this.state.firstInput !== '.') {
@@ -87,28 +109,36 @@ class Calculator extends Component {
         }
     };
 
-    // Updates the state of firstInput
+    /**
+     * Updates the state of firstInput
+     */
     handleFirstInput = (value) => {
         this.setState({
             firstInput: `${this.state.firstInput}${value}`,
         });
     };
 
-    // Updates the state of secondInput
+    /**
+     * Updates the state of secondInput
+     */
     handleSecondInput = (value) => {
         this.setState({
             secondInput: value,
         });
     };
 
-    // Updates the state of thirdInput
+    /**
+     * Updates the state of thirdInput
+     */
     handleThirdInput = (value) => {
         this.setState({
             thirdInput: `${this.state.thirdInput}${value}`,
         });
     };
 
-    // adds the decimal to the correct input
+    /**
+     * Adds the decimal to the correct input
+      */
     handleDecimal = () => {
         if (this.state.secondInput === '' && this.state.firstInputDecimal === false) {
             this.setState({
@@ -123,7 +153,9 @@ class Calculator extends Component {
         }
     };
 
-    // resets all current state values back to empty string
+    /**
+     * Resets all current state values back to the default value
+      */
     handleClear = () => {
         this.setState({
             firstInput: '',
@@ -135,7 +167,10 @@ class Calculator extends Component {
         });
     };
 
-    // removes the furthest to the right value in the input field
+    /**
+     * Removes the furthest to the right value depending on
+     * what input field is currently active
+     */
     handleDelete = () => {
         if (this.state.firstInput !== '' && this.state.secondInput !== '' && this.state.thirdInput !== '') {
             if (this.state.thirdInput.lastIndexOf('.') === this.state.thirdInput.lastIndexOf('') - 1) {
