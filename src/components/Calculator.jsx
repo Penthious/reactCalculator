@@ -23,10 +23,16 @@ class Calculator extends Component {
 
     // sets the state of output
     setOutput = (output) => {
+        if (this.state.firstInput.lastIndexOf('.') === -1) {
+            this.setState({
+                firstInputDecimal: false,
+            });
+        }
         this.setState({
             output: `${this.state.firstInput} ${this.state.secondInput} ${this.state.thirdInput}`,
             firstInput: `${output}`,
             thirdInput: '',
+            thirdInputDecimal: false,
         });
     };
 
@@ -128,6 +134,12 @@ class Calculator extends Component {
     // removes the furthest to the right value in the input field
     handleDelete = () => {
         if (this.state.firstInput !== '' && this.state.secondInput !== '' && this.state.thirdInput !== '') {
+            console.log();
+            if (this.state.thirdInput.lastIndexOf('.') === this.state.thirdInput.lastIndexOf('') - 1) {
+                this.setState({
+                    thirdInputDecimal: false,
+                });
+            }
             this.setState({
                 thirdInput: this.state.thirdInput.slice(0, -1),
             });
@@ -136,6 +148,11 @@ class Calculator extends Component {
                 secondInput: this.state.secondInput.slice(0, -1),
             });
         } else if (this.state.firstInput !== '' && this.state.secondInput === '' && this.state.thirdInput === '') {
+            if (this.state.firstInput.lastIndexOf('.') === this.state.firstInput.lastIndexOf('') - 1) {
+                this.setState({
+                    firstInputDecimal: false,
+                });
+            }
             this.setState({
                 firstInput: this.state.firstInput.slice(0, -1),
             });
