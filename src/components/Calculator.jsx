@@ -138,7 +138,6 @@ class Calculator extends Component {
     // removes the furthest to the right value in the input field
     handleDelete = () => {
         if (this.state.firstInput !== '' && this.state.secondInput !== '' && this.state.thirdInput !== '') {
-            console.log();
             if (this.state.thirdInput.lastIndexOf('.') === this.state.thirdInput.lastIndexOf('') - 1) {
                 this.setState({
                     thirdInputDecimal: false,
@@ -173,8 +172,5 @@ class Calculator extends Component {
         );
     }
 }
-
-Calculator.propTypes    = {};
-Calculator.defaultProps = {};
 
 export default Calculator;

@@ -37,7 +37,8 @@ class Buttons extends Component {
     }
 }
 
-Buttons.propTypes    = {};
-Buttons.defaultProps = {};
+Buttons.propTypes = {
+    handleInputChange: PropTypes.func,
+};
 
 export default Buttons;
