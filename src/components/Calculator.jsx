@@ -67,7 +67,9 @@ class Calculator extends Component {
     // handles how value affects the current state
     handleInputChange = (value) => {
         if (value === '+' || value === '-' || value === '/' || value === '*' || value === '%' || value === '^') {
-            this.handleSecondInput(value);
+            if (this.state.firstInput !== '.') {
+                this.handleSecondInput(value);
+            }
         } else if (value === '.') {
             this.handleDecimal();
         } else if (value === 'AC') {
@@ -75,7 +77,9 @@ class Calculator extends Component {
         } else if (value === 'DEL') {
             this.handleDelete();
         } else if (value === '=') {
-            this.handleOutput();
+            if (this.state.firstInput && this.state.secondInput && this.state.thirdInput && this.state.thirdInput !== '.' && this.state.firstInput !== '.') {
+                this.handleOutput();
+            }
         } else if (this.state.secondInput === '') {
             this.handleFirstInput(value);
         } else if (this.state.secondInput !== '') {
